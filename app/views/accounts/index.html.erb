@@ -10,7 +10,7 @@
   <!--  </div>-->
   <!--</div>-->
   <li class="active">
-    <%= link_to 'Home', new_account_path %>
+    <%= link_to 'Home', accounts_path %>
   </li>
   <li>
     <%= link_to 'New', new_account_path %>
@@ -35,11 +35,13 @@
   </thead>
   
     <tbody>
+      <% @total = 0 %>
       <% for account in @grouped_months[month] %> 
         <tr>
           <td><%= account.buyday.to_s(:long) %></td>
           <td><%= account.title %></td>
-          <td><%= account.dollar.to_s(:long) %></td> 
+          <td><%= account.dollar.to_s(:long) %></td>
+          <% @total= @total + account.dollar.to_i %>
         </tr>
       <% end %> 
     </tbody>

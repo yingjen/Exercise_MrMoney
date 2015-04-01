@@ -7,7 +7,17 @@ class AccountsController < ApplicationController
     @accounts = Account.order(:buyday)
     @grouped_months = @accounts.group_by { |r| r.buyday.beginning_of_month}
     # @accounts = Account.order("buyday desc")
-    @total = Account.sum(:buyday)
+    # @total =  @accounts.sum(:dollar)
+    # @grouped_months.keys.sort.each do |month|
+    #   for account in @grouped_months[month]
+    #     @total = account.dollar.to_s(:long).sum
+    #     # Account.where('created_at >= ? and created_at <= ?', buyday.beginning_of_month, buyday.utc.end_of_month).sum('dollar')
+    #   end 
+    # end
+    
+    # date = DateTime.now.utc
+    # @total = Account.where('created_at >= ? and created_at <= ?', date.beginning_of_month, date.utc.end_of_month).sum('dollar')
+    
   end
 
   # GET /accounts/1
