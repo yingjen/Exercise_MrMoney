@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+<h1>帳目表</h1>
+
+<nav class="nav nav-tabs" role="tablist">
+  <!--<div class="container-fluid">-->
+    <!-- Brand and toggle get grouped for better mobile display -->
+  <!--  <div class="navbar-header">-->
+  <!--    <a class="navbar-brand" href="/accounts/new">NEW</a>-->
+  <!--    <a class="navbar-brand" href="/">Rails 101</a>-->
+  <!--  </div>-->
+  <!--</div>-->
+  <li class="active">
+    <%= link_to 'Home', new_account_path %>
+  </li>
+  <li>
+    <%= link_to 'New', new_account_path %>
+  </li>
+  <!--<li>-->
+  <!--  <%= link_to 'New Account', new_account_path %>-->
+  <!--</li>-->
+</nav>
+
+
+<% @grouped_months.keys.sort.each do |month| %>
+ <h2><%= month.strftime("%B %Y") %></h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>購買日期</th>
+      <th>購買項目</th>
+      <th>項目金額</th>
+      <th>備註</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  
+    <tbody>
+      <% for account in @grouped_months[month] %> 
+        <tr>
+          <td><%= account.buyday.to_s(:long) %></td>
+          <td><%= account.title %></td>
+          <td><%= account.dollar.to_s(:long) %></td> 
+        </tr>
+      <% end %> 
+    </tbody>
+  
+    <tbody>
+      <tr>
+        <td></td>
+        <td>總計：</td>
+        <td colspan="3"><%= @total %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+<br>
+
+<!--<%= link_to 'New Account', new_account_path, class: 'btn-info btn-lg' %>-->

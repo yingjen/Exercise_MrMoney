@@ -1,0 +1,32 @@
+<%= simple_form_for(@account) do |f| %>
+  <%= f.error_notification %>
+  <nav class="nav nav-tabs" role="tablist">
+  <!--<div class="container-fluid">-->
+    <!-- Brand and toggle get grouped for better mobile display -->
+  <!--  <div class="navbar-header">-->
+  <!--    <a class="navbar-brand" href="/accounts/new">NEW</a>-->
+  <!--    <a class="navbar-brand" href="/">Rails 101</a>-->
+  <!--  </div>-->
+  <!--</div>-->
+  <li >
+    <%= link_to 'Home', accounts_path %>
+  </li>
+  <li class="active">
+    <%= link_to 'New', new_account_path %>
+  </li>
+  <!--<li>-->
+  <!--  <%= link_to 'New Account', new_account_path %>-->
+  <!--</li>-->
+</nav>
+
+  <div class="field">
+    <%= f.input :buyday, as: :date, html5: true, label: "購買日期：",:input_html => { :style=> 'width: 300px',class: 'form-control'} %>
+    <%= f.input :title, label: "購買項目：",:input_html => { :style=> 'width: 300px',class: 'form-control'} %>
+    <%= f.input :dollar,label: "項目金額：",:input_html => { :style=> 'width: 300px',class: 'form-control'} %>
+    <%= f.input :description ,label: "備註：",:input_html => { :style=> 'width: 300px',class: 'form-control'} %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit ,"送出" , class: 'btn-primary'%>
+  </div>
+<% end %>

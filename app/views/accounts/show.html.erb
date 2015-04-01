@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Buyday:</strong>
+  <%= @account.buyday %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @account.title %>
+</p>
+
+<p>
+  <strong>Dollar:</strong>
+  <%= @account.dollar %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @account.description %>
+</p>
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>
