@@ -4,19 +4,18 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = Account.order(:buyday)
+    # @accounts = Account.order(:buyday).all.page(params[:page]).per(5)
+    @accounts = Account.all.page(params[:page]).per(5)
     @grouped_months = @accounts.group_by { |r| r.buyday.beginning_of_month}
-    # @accounts = Account.order("buyday desc")
-    # @total =  @accounts.sum(:dollar)
-    # @grouped_months.keys.sort.each do |month|
-    #   for account in @grouped_months[month]
-    #     @total = account.dollar.to_s(:long).sum
-    #     # Account.where('created_at >= ? and created_at <= ?', buyday.beginning_of_month, buyday.utc.end_of_month).sum('dollar')
-    #   end 
-    # end
-    
-    # date = DateTime.now.utc
-    # @total = Account.where('created_at >= ? and created_at <= ?', date.beginning_of_month, date.utc.end_of_month).sum('dollar')
+
+    @month_num = ['1','2','3','4','5','6','7','8','9','10','11','12']
+    @month_details = []
+    @month_costs = []
+     (0..11).each do |i|
+       @month_details[i] = Account.where(["date_part('month',buyday) = ? and date_part('year',buyday) = ?" , @month_num[i],2015]).order('buyday desc')
+       @month_costs[i] = Account.where(["date_part('month',buyday) = ? and date_part('year',buyday) = ?" , @month_num[i],2015]).sum(:dollar)
+     end
+    # @mar = Account.where(['buyday between ? and ?', '2015-03-01', '2015-03-31' ])
     
   end
 

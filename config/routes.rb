@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :accounts
-
+  get 'jan',to: 'accounts#jan'
+  get 'feb',to: 'accounts#feb'
+  get 'mar',to: 'accounts#mar'
+  get 'apr',to: 'accounts#apr'
+  get 'may',to: 'accounts#may'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
